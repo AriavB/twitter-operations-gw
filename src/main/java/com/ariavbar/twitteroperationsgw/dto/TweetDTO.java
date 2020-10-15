@@ -1,6 +1,7 @@
 package com.ariavbar.twitteroperationsgw.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class TwitterOperationsResponseDTO {
+public class TweetDTO {
 	
-	private String requestId;
-	private TweetDTO tweetDTO;
+	private Date tweetCreationTime;
+	private String tweetId;
+	private String tweetText;
+	private List<String> tweetHashtags;
 
 }

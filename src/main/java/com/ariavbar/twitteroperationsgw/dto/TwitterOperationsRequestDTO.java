@@ -13,5 +13,6 @@ public class TwitterOperationsRequestDTO {
 	
 	@NotNull
 	private String requestId;
+	private String statusUpdateText;
 	
 }

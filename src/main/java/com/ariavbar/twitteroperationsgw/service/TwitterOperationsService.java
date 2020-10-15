@@ -7,4 +7,6 @@ public interface TwitterOperationsService {
 
 	TwitterOperationsResponseDTO tweet(TwitterOperationsRequestDTO twitterOperationsRequestDTO);
 
+	TwitterOperationsResponseDTO show(Long tweetId);
+	
 }
