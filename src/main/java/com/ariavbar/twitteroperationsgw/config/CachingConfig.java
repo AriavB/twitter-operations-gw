@@ -9,11 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableCaching
 public class CachingConfig {
-	
-	public static final String APPLICATION_CACHE = "tweets";
-	
+		
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager(APPLICATION_CACHE);
+        return new ConcurrentMapCacheManager(ApplicationConstants.APPLICATION_CACHE);
     }
+    
 }

@@ -1,5 +1,6 @@
 package com.ariavbar.twitteroperationsgw.dto;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +14,8 @@ public class TwitterOperationsRequestDTO {
 	
 	@NotNull
 	private String requestId;
+	
+	@NotEmpty
 	private String statusUpdateText;
 	
 }

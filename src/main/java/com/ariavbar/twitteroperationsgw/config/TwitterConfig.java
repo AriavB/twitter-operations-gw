@@ -8,16 +8,16 @@ import org.springframework.social.twitter.api.impl.TwitterTemplate;
 @Configuration
 public class TwitterConfig {
 	
-	@Value("${spring.social.twitter.appId}")
+	@Value("${spring.social.twitter.api-key}")
 	private String consumerKey;
 	
-	@Value("${spring.social.twitter.appSecret}")
+	@Value("${spring.social.twitter.api-secret}")
 	private String consumerSecret;
 	
-	@Value("${twitter.access.token}")
+	@Value("${spring.social.twitter.access-token}")
 	private String accessToken;
 	
-	@Value("${twitter.access.token.secret}")
+	@Value("${spring.social.twitter.access-token-secret}")
 	private String accessTokenSecret;
 	
 	@Bean

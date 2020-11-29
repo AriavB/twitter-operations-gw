@@ -7,7 +7,7 @@ import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Service;
 
-import com.ariavbar.twitteroperationsgw.config.CachingConfig;
+import com.ariavbar.twitteroperationsgw.config.ApplicationConstants;
 import com.ariavbar.twitteroperationsgw.dto.TweetDTO;
 import com.ariavbar.twitteroperationsgw.dto.TwitterOperationsRequestDTO;
 import com.ariavbar.twitteroperationsgw.dto.TwitterOperationsResponseDTO;
@@ -42,10 +42,10 @@ public class TwitterOperationsServiceImpl implements TwitterOperationsService {
 	}
 
 	@Override
-	@Cacheable(value = CachingConfig.APPLICATION_CACHE, key = "#tweetId")
+	@Cacheable(value = ApplicationConstants.APPLICATION_CACHE, key = "#tweetId")
 	public TwitterOperationsResponseDTO show(Long tweetId) {
 		Tweet tweet = twitter.timelineOperations().getStatus(tweetId);
-
+		
 		return TwitterOperationsResponseDTO.builder()
 				.tweetDTO(TweetDTO.builder()
 						.tweetCreationTime(tweet.getCreatedAt())
