@@ -13,7 +13,7 @@ public class TestUtil {
 	private static final String requestId = "requestId";
 	private static final String statusUpdateText = "statusUpdateText";
 	private static final Date tweetCreationTime = Date.valueOf(LocalDate.now());
-	private static final String tweetId = "123456789";
+	private static final String tweetId = "1000";
 	private static final String tweetText = "tweetText";
 	private static final List<String> tweetHashtags = List.of("#tweet", "#hash", "#tags");
 	

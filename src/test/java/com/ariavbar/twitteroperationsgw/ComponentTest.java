@@ -1,28 +1,25 @@
-package com.ariavbar.twitteroperationsgw.controller;
+package com.ariavbar.twitteroperationsgw;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.ariavbar.twitteroperationsgw.TestUtil;
 import com.ariavbar.twitteroperationsgw.dto.TwitterOperationsRequestDTO;
 import com.ariavbar.twitteroperationsgw.dto.TwitterOperationsResponseDTO;
-import com.ariavbar.twitteroperationsgw.service.TwitterOperationsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class TwitterOperationsControllerTest {
+public class ComponentTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
@@ -30,19 +27,11 @@ class TwitterOperationsControllerTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	@MockBean
-	private TwitterOperationsService twitterOperationsService;
-	
-	@Test
-	void contextLoads() {}
-
 	@Test
 	public void shouldBeCreated() throws Exception {
 		TwitterOperationsRequestDTO twitterOperationsRequestDTO = TestUtil.getTwitterOperationsRequestDTO();
 		TwitterOperationsResponseDTO twitterOperationsResponseDTO = TestUtil.getTwitterOperationsResponseDTO();
-		
-		when(twitterOperationsService.tweet(twitterOperationsRequestDTO)).thenReturn(twitterOperationsResponseDTO);
-		
+
 		MvcResult mvcResult = mockMvc
 								.perform(post("/v1/tweet")
 								.content(mapper.writeValueAsString(twitterOperationsRequestDTO))
@@ -59,8 +48,6 @@ class TwitterOperationsControllerTest {
 		TwitterOperationsResponseDTO twitterOperationsResponseDTO = TestUtil.getTwitterOperationsResponseDTO();
 		Long tweetId = Long.valueOf(TestUtil.getTweetId());
 		
-		when(twitterOperationsService.show(tweetId)).thenReturn(twitterOperationsResponseDTO);
-
 		MvcResult mvcResult = mockMvc
 								.perform(get("/v1/show/{tweetId}", tweetId)
 								.accept(MediaType.APPLICATION_JSON))
@@ -69,5 +56,5 @@ class TwitterOperationsControllerTest {
 		
 		assertEquals(mapper.writeValueAsString(twitterOperationsResponseDTO), mvcResult.getResponse().getContentAsString());
 	}
-	
+
 }

@@ -26,10 +26,10 @@ public class TwitterOperationsServiceImpl implements TwitterOperationsService {
 	public TwitterOperationsResponseDTO tweet(TwitterOperationsRequestDTO twitterOperationsRequestDTO) {
 	    Tweet tweet = null;  
 		try {
-	         tweet = twitter.timelineOperations().updateStatus(twitterOperationsRequestDTO.getStatusUpdateText());
-	     } catch (RuntimeException ex) {
-	    	 log.error("Unable to tweet" + ex);
-	     }
+			tweet = twitter.timelineOperations().updateStatus(twitterOperationsRequestDTO.getStatusUpdateText());
+	    } catch (Exception ex) {
+	    	log.error("Unable to tweet" + ex);
+	    }
 
 		return TwitterOperationsResponseDTO.builder()
 				.requestId(twitterOperationsRequestDTO.getRequestId())
